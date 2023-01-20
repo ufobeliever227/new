@@ -1,5 +1,9 @@
+import { useQuery } from "@/hooks";
+
 const Index = () => {
-  return <h1 className="text-3xl font-bold underline">Hello world!</h1>;
+  const { data, loading, error } = useQuery();
+  console.log(data, loading, error);
+  return null;
 };
 
 export default Index;
