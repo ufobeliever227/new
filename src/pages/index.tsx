@@ -1,9 +1,30 @@
 import { DropDown, Field, FieldItem, History } from "@/components";
 import { useQuery } from "@/hooks";
 import { Button } from "antd";
+import { useEffect, useState } from "react";
 
 const Index = () => {
   const { data, loading, error } = useQuery();
+  const [checkedElements, setCheckedElements] = useState<Array<Array<number>>>(
+    []
+  );
+
+  const setCheckedElement = (elem: Array<number>) => {
+    for (let i = 0; i < checkedElements.length; i++) {
+      if (
+        checkedElements[i][0] === elem[0] &&
+        checkedElements[i][1] === elem[1]
+      ) {
+        setCheckedElements(
+          checkedElements.filter((el) => {
+            return !(el[0] === elem[0] && el[1] === elem[1]);
+          })
+        );
+        return;
+      }
+    }
+    setCheckedElements((prev) => [...prev, elem]);
+  };
 
   const items = [
     {
@@ -28,24 +49,6 @@ const Index = () => {
     items,
   };
 
-  const data1 = [
-    {
-      row: 2,
-      col: 6,
-      key: 1,
-    },
-    {
-      row: 2,
-      col: 6,
-      key: 2,
-    },
-    {
-      row: 2,
-      col: 6,
-      key: 3,
-    },
-  ];
-
   return (
     <div>
       <FieldItem isChecked={true} />
@@ -53,8 +56,12 @@ const Index = () => {
       <Button type="primary" className="uppercase font-semibold h-11">
         start
       </Button>
-      <History items={data1} label="Hover Squares" />
-      <Field elementsCount={5} />
+      <Field
+        elementsCount={5}
+        setCheckedElement={setCheckedElement}
+        checkedElements={checkedElements}
+      />
+      <History items={checkedElements} label="Hover Squares" />
     </div>
   );
 };

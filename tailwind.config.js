@@ -9,6 +9,7 @@ module.exports = {
       "primary-orange": "var(--primary-orange)",
       "secondary-orange": "var(--secondary-orange)",
       black: "var(--black)",
+      white: "var(--white)",
     },
   },
   plugins: [],
