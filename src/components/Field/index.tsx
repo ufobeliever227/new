@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { FieldItem } from "../FieldItem";
+import { FieldItemMemo } from "../FieldItem";
 import { IHistoryItemProps } from "../HistoryItem/types";
 import { IFieldProps } from "./types";
 
@@ -61,7 +61,11 @@ export const Field: React.FC<IFieldProps> = ({
               const [col, row] = element;
               const id = element.join("-");
               return (
-                <FieldItem key={id} id={id} isChecked={isChecked(col, row)} />
+                <FieldItemMemo
+                  key={id}
+                  id={id}
+                  isChecked={isChecked(col, row)}
+                />
               );
             })}
           </div>

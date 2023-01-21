@@ -1,7 +1,8 @@
 import { IFieldItemProps } from "./types";
 import styles from "./FieldItem.module.scss";
+import React from "react";
 
-export const FieldItem: React.FC<IFieldItemProps> = ({
+const FieldItem: React.FC<IFieldItemProps> = ({
   isChecked = false,
   ...rest
 }) => {
@@ -20,3 +21,5 @@ export const FieldItem: React.FC<IFieldItemProps> = ({
     </div>
   );
 };
+
+export const FieldItemMemo = React.memo(FieldItem);

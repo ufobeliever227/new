@@ -1,11 +1,6 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
-
-interface IState<TData> {
-  data: TData | null;
-  loading: boolean;
-  error: boolean;
-}
+import { IState } from "./types";
 
 export const useQuery = <TData>(): IState<TData> => {
   const [queryState, setQueryState] = useState<IState<TData>>({

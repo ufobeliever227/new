@@ -6,6 +6,7 @@ import { useState } from "react";
 
 const Index = () => {
   const { data, loading, error } = useQuery();
+
   const [checkedElements, setCheckedElements] = useState<
     Array<IHistoryItemProps>
   >([]);
@@ -51,17 +52,20 @@ const Index = () => {
   };
 
   return (
-    <div>
-      <FieldItem isChecked={true} />
-      <DropDown label="vrwere" menuProps={menuProps} />
-      <Button type="primary" className="uppercase font-semibold h-11">
-        start
-      </Button>
-      <Field
-        elementsCount={5}
-        setCheckedElement={setCheckedElement}
-        checkedElements={checkedElements}
-      />
+    <div className="flex justify-between p-20">
+      <div className="w-min">
+        <div className="flex w-full justify-between mb-6">
+          <DropDown label="vrwere" menuProps={menuProps} />
+          <Button type="primary" className="uppercase font-semibold h-11 ml-4">
+            start
+          </Button>
+        </div>
+        <Field
+          elementsCount={5}
+          setCheckedElement={setCheckedElement}
+          checkedElements={checkedElements}
+        />
+      </div>
       <History items={checkedElements} label="Hover Squares" />
     </div>
   );
