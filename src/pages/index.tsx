@@ -1,4 +1,11 @@
-import { DropDown, Field, History, Loading, Error } from "@/components";
+import {
+  DropDown,
+  Field,
+  History,
+  Loading,
+  Error,
+  NoLevel,
+} from "@/components";
 import { IHistoryItemProps, ILevel } from "../types/types";
 import { useQuery } from "@/hooks";
 import { Button } from "antd";
@@ -43,16 +50,18 @@ const Index = () => {
       return <Error />;
     } else if (loading) {
       return <Loading />;
-    }
-
-    if (level) {
-      return (
-        <Field
-          elementsCount={level.field}
-          setCheckedElement={setCheckedElement}
-          checkedElements={checkedElements}
-        />
-      );
+    } else {
+      if (level) {
+        return (
+          <Field
+            elementsCount={level.field}
+            setCheckedElement={setCheckedElement}
+            checkedElements={checkedElements}
+          />
+        );
+      } else {
+        return <NoLevel />;
+      }
     }
 
     return null;
