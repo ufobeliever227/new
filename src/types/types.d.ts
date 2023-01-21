@@ -3,3 +3,8 @@ export interface IHistoryItemProps {
   col: number;
   key: string | number;
 }
+
+export interface ILevel {
+  name: string;
+  field: number;
+}

@@ -1,4 +1,4 @@
-import { IHistoryItemProps } from "./types";
+import { IHistoryItemProps } from "../../types/types";
 
 export const HistoryItem: React.FC<IHistoryItemProps> = ({ row, col, key }) => {
   return (

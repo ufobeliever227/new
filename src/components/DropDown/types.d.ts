@@ -1,4 +1,7 @@
+import { ILevel } from "../../types";
+
 export interface IDropDownProps {
-  menuProps: MenuProps;
-  label: string;
+  menuProps: Array<ILevel> | null;
+  level: ILevel | null;
+  setLevel: Dispatch<SetStateAction<ILevel | null>>;
 }

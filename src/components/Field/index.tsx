@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { FieldItemMemo } from "../FieldItem";
-import { IHistoryItemProps } from "../HistoryItem/types";
+import { IHistoryItemProps } from "../../types/types";
 import { IFieldProps } from "./types";
 
 export const Field: React.FC<IFieldProps> = ({
