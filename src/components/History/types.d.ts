@@ -1,4 +1,4 @@
 export interface IHistoryProps {
-  items: Array<Array<number>>;
+  items: Array<IHistoryItemProps>;
   label: string;
 }

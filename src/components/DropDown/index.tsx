@@ -1,4 +1,4 @@
-import { Button, Dropdown, MenuProps, Space } from "antd";
+import { Button, Dropdown } from "antd";
 import { CaretDownOutlined } from "@ant-design/icons";
 import { IDropDownProps } from "./types";
 

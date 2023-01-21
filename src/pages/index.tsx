@@ -1,23 +1,24 @@
 import { DropDown, Field, FieldItem, History } from "@/components";
+import { IHistoryItemProps } from "@/components/HistoryItem/types";
 import { useQuery } from "@/hooks";
 import { Button } from "antd";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 const Index = () => {
   const { data, loading, error } = useQuery();
-  const [checkedElements, setCheckedElements] = useState<Array<Array<number>>>(
-    []
-  );
+  const [checkedElements, setCheckedElements] = useState<
+    Array<IHistoryItemProps>
+  >([]);
 
-  const setCheckedElement = (elem: Array<number>) => {
+  const setCheckedElement = (elem: IHistoryItemProps) => {
     for (let i = 0; i < checkedElements.length; i++) {
       if (
-        checkedElements[i][0] === elem[0] &&
-        checkedElements[i][1] === elem[1]
+        checkedElements[i].col === elem.col &&
+        checkedElements[i].row === elem.row
       ) {
         setCheckedElements(
           checkedElements.filter((el) => {
-            return !(el[0] === elem[0] && el[1] === elem[1]);
+            return !(el.col === elem.col && el.row === elem.row);
           })
         );
         return;

@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { FieldItem } from "../FieldItem";
+import { IHistoryItemProps } from "../HistoryItem/types";
 import { IFieldProps } from "./types";
 
 export const Field: React.FC<IFieldProps> = ({
@@ -21,11 +22,12 @@ export const Field: React.FC<IFieldProps> = ({
   };
 
   const isChecked = (
-    element: Array<number>,
-    elements: Array<Array<number>> = checkedElements
+    elementRow: number,
+    elementCol: number,
+    elements: Array<IHistoryItemProps> = checkedElements
   ) => {
     for (let el of elements) {
-      if (el[0] === element[0] && el[1] === element[1]) {
+      if (el.col === elementCol && el.row === elementRow) {
         return true;
       }
     }
@@ -39,25 +41,27 @@ export const Field: React.FC<IFieldProps> = ({
     if (currentElement !== null) {
       if (prevId !== currentElement.id) {
         setPrevId(currentElement.id);
-        setCheckedElement([
-          ...currentElement.id.split("-").map((e) => +e),
-          Date.now(),
-        ]);
+
+        const [row, col] = currentElement.id.split("-").map((e) => +e);
+        setCheckedElement({ col, row, key: Date.now() });
       }
     }
   };
 
   return (
-    <div className="flex w-min" onMouseMove={onMouseMoveHandler}>
+    <div
+      className="flex w-min"
+      onMouseMove={onMouseMoveHandler}
+      onMouseLeave={() => setPrevId("")}
+    >
       {createArrayForFields(elementsCount).map((rows) => {
         return (
-          <div>
+          <div key={rows[0][0]}>
             {rows.map((element) => {
+              const [col, row] = element;
+              const id = element.join("-");
               return (
-                <FieldItem
-                  id={element.join("-")}
-                  isChecked={isChecked(element)}
-                />
+                <FieldItem key={id} id={id} isChecked={isChecked(col, row)} />
               );
             })}
           </div>
