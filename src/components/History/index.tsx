@@ -19,14 +19,14 @@ export const History: React.FC<IHistoryProps> = ({ items, label }) => {
           id="scroll-block"
           className={"flex flex-col gap-2 " + styles["history__items-wrapper"]}
         >
-          {items.map((e) => {
+          {items.map((elem) => {
             return (
               <CSSTransition
                 timeout={500}
                 classNames="history-item"
-                key={e.key}
+                key={elem.key}
               >
-                <HistoryItem row={e.row} col={e.col} key={e.key} />
+                <HistoryItem {...elem} />
               </CSSTransition>
             );
           })}

@@ -26,8 +26,8 @@ export const Field: React.FC<IFieldProps> = ({
     elementCol: number,
     elements: Array<IHistoryItemProps> = checkedElements
   ) => {
-    for (let el of elements) {
-      if (el.col === elementCol && el.row === elementRow) {
+    for (let elem of elements) {
+      if (elem.col === elementCol && elem.row === elementRow) {
         return true;
       }
     }
@@ -35,8 +35,10 @@ export const Field: React.FC<IFieldProps> = ({
     return false;
   };
 
-  const onMouseMoveHandler = (e: React.MouseEvent<HTMLDivElement>) => {
-    let currentElement = (e.target as HTMLTextAreaElement).closest(".button");
+  const onMouseMoveHandler = (event: React.MouseEvent<HTMLDivElement>) => {
+    let currentElement = (event.target as HTMLTextAreaElement).closest(
+      ".button"
+    );
 
     if (currentElement !== null) {
       if (prevId !== currentElement.id) {
@@ -57,9 +59,9 @@ export const Field: React.FC<IFieldProps> = ({
       {createArrayForFields(elementsCount).map((rows) => {
         return (
           <div key={rows[0][0]}>
-            {rows.map((element) => {
-              const [col, row] = element;
-              const id = element.join("-");
+            {rows.map((elem) => {
+              const [col, row] = elem;
+              const id = elem.join("-");
               return (
                 <FieldItemMemo
                   key={id}
