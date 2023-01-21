@@ -30,10 +30,13 @@ const Index = () => {
 
   const setCheckedElement = (elem: IHistoryItemProps) => {
     for (let i = 0; i < checkedElements.length; i++) {
-      if (checkedElements[i].key === elem.key) {
+      if (
+        checkedElements[i].col === elem.col &&
+        checkedElements[i].row === elem.row
+      ) {
         setCheckedElements(
           checkedElements.filter((el) => {
-            return !(el.key === elem.key);
+            return !(el.col === elem.col && el.row === elem.row);
           })
         );
         return;

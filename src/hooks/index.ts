@@ -9,15 +9,19 @@ export const useQuery = <TData>(): IState<TData> => {
     error: false,
   });
 
+  const URL = process.env.NEXT_PUBLIC_MAIN_URL
+    ? process.env.NEXT_PUBLIC_MAIN_URL
+    : "";
+
   const fetchApi = async () => {
     try {
-      const { data } = await axios.get(process.env.NEXT_PUBLIC_MAIN_URL!);
+      const { data } = await axios.get(URL);
       setQueryState({
         data: data,
         loading: false,
         error: false,
       });
-    } catch {
+    } catch (err) {
       setQueryState({
         data: null,
         loading: false,
@@ -29,6 +33,5 @@ export const useQuery = <TData>(): IState<TData> => {
   useEffect(() => {
     fetchApi();
   }, []);
-
   return queryState;
 };
