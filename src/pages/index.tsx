@@ -52,9 +52,10 @@ const Index = () => {
       return <Loading />;
     } else {
       if (level) {
+        const { field } = level;
         return (
           <Field
-            elementsCount={level.field}
+            elementsCount={field}
             setCheckedElement={setCheckedElement}
             checkedElements={checkedElements}
           />

@@ -1,5 +1,5 @@
 import { TransitionGroup, CSSTransition } from "react-transition-group";
-import { HistoryItem } from "../HistoryItem";
+import { HistoryItemMemo } from "../HistoryItem";
 import { IHistoryProps } from "./types";
 import styles from "./History.module.scss";
 import { useEffect } from "react";
@@ -20,13 +20,10 @@ export const History: React.FC<IHistoryProps> = ({ items, label }) => {
           className={"flex flex-col gap-2 " + styles["history__items-wrapper"]}
         >
           {items.map((elem) => {
+            const { key } = elem;
             return (
-              <CSSTransition
-                timeout={500}
-                classNames="history-item"
-                key={elem.key}
-              >
-                <HistoryItem {...elem} />
+              <CSSTransition timeout={500} classNames="history-item" key={key}>
+                <HistoryItemMemo {...elem} />
               </CSSTransition>
             );
           })}

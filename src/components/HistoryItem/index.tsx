@@ -1,6 +1,7 @@
+import React from "react";
 import { IHistoryItemProps } from "../../types/types";
 
-export const HistoryItem: React.FC<IHistoryItemProps> = ({ row, col, key }) => {
+const HistoryItem: React.FC<IHistoryItemProps> = ({ row, col, key }) => {
   return (
     <div
       key={key}
@@ -17,3 +18,5 @@ export const HistoryItem: React.FC<IHistoryItemProps> = ({ row, col, key }) => {
     </div>
   );
 };
+
+export const HistoryItemMemo = React.memo(HistoryItem);
