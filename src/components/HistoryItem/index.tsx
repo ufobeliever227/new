@@ -12,7 +12,7 @@ export const HistoryItem: React.FC<IHistoryItemProps> = ({ row, col, key }) => {
                  border-primary-gold"
     >
       <div className="text-primary-orange">
-        row {row} col {col}
+        row {row + 1} col {col + 1}
       </div>
     </div>
   );
