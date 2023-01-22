@@ -8,7 +8,10 @@ export const Field: React.FC<IFieldProps> = ({
   setCheckedElement,
   checkedElements,
 }) => {
+  //Id of previous hovered square
   const [prevId, setPrevId] = useState<string>("");
+
+  //Create an array that is going to be the base of the rendered field
   const createArrayForFields = (count: number = elementsCount) => {
     let res: Array<Array<Array<number>>> = [];
     for (let i = 0; i < count; i++) {
@@ -21,7 +24,7 @@ export const Field: React.FC<IFieldProps> = ({
     return res;
   };
 
-  const isChecked = (
+  const isSquareChecked = (
     elementRow: number,
     elementCol: number,
     elements: Array<IHistoryItemProps> = checkedElements
@@ -66,7 +69,7 @@ export const Field: React.FC<IFieldProps> = ({
                 <FieldItemMemo
                   key={id}
                   id={id}
-                  isChecked={isChecked(col, row)}
+                  isChecked={isSquareChecked(col, row)}
                 />
               );
             })}

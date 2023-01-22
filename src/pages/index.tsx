@@ -14,35 +14,37 @@ import { useState } from "react";
 const Index = () => {
   const { data, loading, error } = useQuery<Array<ILevel>>();
 
-  const [checkedElements, setCheckedElements] = useState<
+  const [checkedSquares, setCheckedSquares] = useState<
     Array<IHistoryItemProps>
   >([]);
 
+  //Level that was choosen in dropdown, but isn't used.
   const [tmpLevel, setTmpLevel] = useState<ILevel | null>(null);
+  //Level info that is used now.
   const [level, setLevel] = useState<ILevel | null>(null);
 
   const setLevelHandler = () => {
     if (tmpLevel) {
       setLevel(tmpLevel);
-      setCheckedElements([]);
+      setCheckedSquares([]);
     }
   };
 
-  const setCheckedElement = (elem: IHistoryItemProps) => {
-    for (let i = 0; i < checkedElements.length; i++) {
+  const setCheckedSquare = (elem: IHistoryItemProps) => {
+    for (let i = 0; i < checkedSquares.length; i++) {
       if (
-        checkedElements[i].col === elem.col &&
-        checkedElements[i].row === elem.row
+        checkedSquares[i].col === elem.col &&
+        checkedSquares[i].row === elem.row
       ) {
-        setCheckedElements(
-          checkedElements.filter((el) => {
+        setCheckedSquares(
+          checkedSquares.filter((el) => {
             return !(el.col === elem.col && el.row === elem.row);
           })
         );
         return;
       }
     }
-    setCheckedElements((prev) => [...prev, elem]);
+    setCheckedSquares((prev) => [...prev, elem]);
   };
 
   const renderField = () => {
@@ -56,8 +58,8 @@ const Index = () => {
         return (
           <Field
             elementsCount={field}
-            setCheckedElement={setCheckedElement}
-            checkedElements={checkedElements}
+            setCheckedElement={setCheckedSquare}
+            checkedElements={checkedSquares}
           />
         );
       } else {
@@ -82,7 +84,7 @@ const Index = () => {
         </div>
         {renderField()}
       </div>
-      <History items={checkedElements} label="Hover Squares" />
+      <History items={checkedSquares} label="Hover Squares" />
     </div>
   );
 };

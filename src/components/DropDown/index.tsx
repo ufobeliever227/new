@@ -8,6 +8,7 @@ export const DropDown: React.FC<IDropDownProps> = ({
   level,
   setLevel,
 }) => {
+  //Converting props to suitable form for antd component
   let items;
   if (menuProps) {
     items = {
